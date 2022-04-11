@@ -1,0 +1,3 @@
+Randochoose 0.0.1 Alpha
+- Completion: 11th April, 2022
+- Basic functionality implemented
