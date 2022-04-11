@@ -8,8 +8,8 @@ import java.util.concurrent.*;
 public class RandochooseMain {
 
 	public static int majorVer = 0;
-	public static int minorVer1 = 0;
-	public static int minorVer2 = 1;
+	public static int minorVer1 = 1;
+	public static int minorVer2 = 0;
 	
 	public static void main(String[] args) {		
 		JFrame mainFrame = new JFrame();
@@ -41,6 +41,8 @@ public class RandochooseMain {
 		
 		mainPanel.add(textPanel);
 		
+		JPanel btnPanel = new JPanel(new GridLayout(1, 2, 10, 10));
+		
 		JButton chooseCandidateBtn = new JButton("Choose!");
 		chooseCandidateBtn.setFont(new Font("Arial", 0, 14));
 		
@@ -50,8 +52,20 @@ public class RandochooseMain {
 			}
 		});
 		
-		mainPanel.add(chooseCandidateBtn);
+		btnPanel.add(chooseCandidateBtn);
 		
+		JButton aboutBtn = new JButton("About");
+		aboutBtn.setFont(new Font("Arial", 0, 14));
+		
+		aboutBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				aboutThisSoftware();
+			}
+		});
+		
+		btnPanel.add(aboutBtn);
+		
+		mainPanel.add(btnPanel);
 		mainFrame.add(mainPanel);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
@@ -102,7 +116,7 @@ public class RandochooseMain {
 	public static void randomizedChoice(String[] candidates) {
 		int i = candidates.length;
 		
-		int randomizedInt = ThreadLocalRandom.current().nextInt(0, i - 1);
+		int randomizedInt = ThreadLocalRandom.current().nextInt(0, i);
 		String chosenCandidate = candidates[randomizedInt];
 		
 		JDialog noEntryDialog = new JDialog();
@@ -113,6 +127,112 @@ public class RandochooseMain {
 		JLabel noticeLabel = new JLabel(chosenCandidate + " has been chosen.");
 		noticeLabel.setFont(new Font("Arial", 0, 16));
 		noEntryPanel.add(noticeLabel);
+		
+		JButton okBtn = new JButton("OK!");
+		okBtn.setFont(new Font("Arial", 0, 14));
+		
+		okBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				noEntryDialog.setVisible(false);
+			}
+		});
+		
+		noEntryPanel.add(okBtn);
+		
+		noEntryDialog.add(noEntryPanel);
+		noEntryDialog.pack();
+		noEntryDialog.setVisible(true);
+	}
+	
+	public static void aboutThisSoftware() {
+		JDialog noEntryDialog = new JDialog();
+		noEntryDialog.setTitle("Randochoose");
+		
+		JPanel noEntryPanel = new JPanel(new GridLayout(0, 1, 10, 10));
+		
+		JLabel noticeLabel = new JLabel("Randochoose");
+		noticeLabel.setFont(new Font("Arial", 0, 16));
+		noEntryPanel.add(noticeLabel);
+		
+		JLabel noticeLabel2 = new JLabel("Version " + majorVer + "." + minorVer1 + "." + minorVer2);
+		noticeLabel2.setFont(new Font("Arial", 0, 14));
+		noEntryPanel.add(noticeLabel2);
+		
+		JLabel licenseHeader = new JLabel("MIT License");
+		licenseHeader.setFont(new Font("Arial", 0, 14));
+		noEntryPanel.add(licenseHeader);
+		
+		JLabel copyrightHeader = new JLabel("Copyright (c) 2022 Nicolas Lucien and Randochoose contributors");
+		copyrightHeader.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(copyrightHeader);
+		
+		JLabel conditions1 = new JLabel("Permission is hereby granted, free of charge, to any person obtaining a copy");
+		conditions1.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions1);
+		
+		JLabel conditions2 = new JLabel("of this software and associated documentation files (the \"Software\"), to deal");
+		conditions2.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions2);
+		
+		JLabel conditions3 = new JLabel("in the Software without restriction, including without limitation the rights");
+		conditions3.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions3);
+		
+		JLabel conditions4 = new JLabel("to use, copy, modify, merge, publish, distribute, sublicense, and/or sell");
+		conditions4.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions4);
+		
+		JLabel conditions5 = new JLabel("copies of the Software, and to permit persons to whom the Software is");
+		conditions5.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions5);
+		
+		JLabel conditions6 = new JLabel("furnished to do so, subject to the following conditions:");
+		conditions6.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions6);
+		
+		JLabel conditions7 = new JLabel("");
+		conditions7.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions7);
+		
+		JLabel conditions8 = new JLabel("The above copyright notice and this permission notice shall be included in all");
+		conditions8.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions8);
+		
+		JLabel conditions9 = new JLabel("copies or substantial portions of the Software.");
+		conditions9.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions9);
+		
+		JLabel conditions10 = new JLabel("");
+		conditions10.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions10);
+		
+		JLabel conditions11 = new JLabel("THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR");
+		conditions11.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions11);
+		
+		JLabel conditions12 = new JLabel("IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,");
+		conditions12.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions12);
+		
+		JLabel conditions13 = new JLabel("FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE");
+		conditions13.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions13);
+		
+		JLabel conditions14 = new JLabel("AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER");
+		conditions14.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions14);
+		
+		JLabel conditions15 = new JLabel("LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,");
+		conditions15.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions15);
+		
+		JLabel conditions16 = new JLabel("OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE");
+		conditions16.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions16);
+		
+		JLabel conditions17 = new JLabel("SOFTWARE.");
+		conditions17.setFont(new Font("Arial", 0, 12));
+		noEntryPanel.add(conditions17);
 		
 		JButton okBtn = new JButton("OK!");
 		okBtn.setFont(new Font("Arial", 0, 14));

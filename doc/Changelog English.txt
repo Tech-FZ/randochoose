@@ -1,3 +1,9 @@
+Randochoose 0.1.0 Alpha
+- Completion: 11th April, 2022
+- Software is completely legalised.
+- The randomizing issue has been fixed.
+- There is now an executable only release and a full release with documentation.
+
 Randochoose 0.0.1 Alpha
 - Completion: 11th April, 2022
 - Basic functionality implemented
