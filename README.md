@@ -3,15 +3,23 @@ A random generator written in Java.
 
 # System requirements
 OS: Windows 7 SP1¹ or newer (amd64); Windows Server 2012 or newer (amd64); macOS 10.11² or newer (Intel, Apple Silicon); Solaris 11.3³ or newer (SPARC); RHEL 6 (amd64), Oracle Linux 6 (amd64, Aarch64⁴), Suse Linux Enterprise Server 12 (amd64), Ubuntu Linux 18.04 LTS (amd64), distributions based on one of those or newer
+
 Java: Java 11⁵ or newer
+
 Processor: Intel Core 2 Duo @ 2.4 GHz or equivalent
+
 RAM: 4 GB (6 GB if running Windows 11)
+
 HDD: 2 MB free disk space (really small, right?)
 
 ¹ Windows 7 is no longer supported by Microsoft. Support requests from Windows 7 users will not be prioritized.
+
 ² The creator of this program hasn't got a Mac and therefore macOS support requests will not be prioritized.
+
 ³ The creator must emulate the architecture for Solaris and even then - eventually isn't able to get Java binaries for the platform legally. Support requests will not be prioritized.
+
 ⁴ Only Oracle Linux 7.6+ can handle this program on Aarch64 machines. Additionally, support requests will be resolved very slowly due to emulation being required.
+
 ⁵ The official Oracle binaries are not free for anything but development and testing purposes. Using the Adoptium Temurin binaries is recommended. You can get them here: https://adoptium.net/de/
 
 # Installation
