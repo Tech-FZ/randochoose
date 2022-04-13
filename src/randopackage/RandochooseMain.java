@@ -3,18 +3,24 @@ package randopackage;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.concurrent.*;
 
 public class RandochooseMain {
 
 	public static int majorVer = 0;
-	public static int minorVer1 = 1;
+	public static int minorVer1 = 2;
 	public static int minorVer2 = 0;
 	
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
+		String link = "https://raw.githubusercontent.com/Tech-FZ/randochoose/main/vercheck.rdc";
+		File out = new File("vercheck.rdc");
+		new Thread(new RandochooseUpdate(link, out)).start();
+		RandochooseUpdateStageTwo.checkStage(majorVer, minorVer1, minorVer2, false);
+		
 		JFrame mainFrame = new JFrame();
 		mainFrame.setTitle("Randochoose");
-		mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setSize(500, 300);
 		mainFrame.setLocationRelativeTo(null);
 		
@@ -41,7 +47,7 @@ public class RandochooseMain {
 		
 		mainPanel.add(textPanel);
 		
-		JPanel btnPanel = new JPanel(new GridLayout(1, 2, 10, 10));
+		JPanel btnPanel = new JPanel(new GridLayout(1, 3, 10, 10));
 		
 		JButton chooseCandidateBtn = new JButton("Choose!");
 		chooseCandidateBtn.setFont(new Font("Arial", 0, 14));
@@ -53,6 +59,20 @@ public class RandochooseMain {
 		});
 		
 		btnPanel.add(chooseCandidateBtn);
+		
+		JButton updateBtn = new JButton("Check for updates");
+		updateBtn.setFont(new Font("Arial", 0, 14));
+		
+		updateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String link = "https://raw.githubusercontent.com/Tech-FZ/randochoose/main/vercheck.rdc";
+				File out = new File("vercheck.rdc");
+				new Thread(new RandochooseUpdate(link, out)).start();
+				RandochooseUpdateStageTwo.checkStage(majorVer, minorVer1, minorVer2, true);
+			}
+		});
+		
+		btnPanel.add(updateBtn);
 		
 		JButton aboutBtn = new JButton("About");
 		aboutBtn.setFont(new Font("Arial", 0, 14));

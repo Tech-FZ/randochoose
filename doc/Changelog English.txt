@@ -1,3 +1,8 @@
+Randochoose 0.2.0 Alpha
+- Completion: 13th April, 2022
+- The Java VM processing bug has been fixed. If you close this program, you REALLY close it now! :)
+- You want to profit from features and bugfixes like this, don't you? The Randochoose Update Management will be the feature which can serve you in this case.
+
 Randochoose 0.1.0 Alpha
 - Completion: 11th April, 2022
 - Software is completely legalised.
