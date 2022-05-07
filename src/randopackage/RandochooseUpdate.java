@@ -15,10 +15,12 @@ import javax.swing.JPanel;
 public class RandochooseUpdate implements Runnable {
 	String link;
 	File out;
+	boolean manual;
 	
-	public RandochooseUpdate(String link, File out) {
+	public RandochooseUpdate(String link, File out, boolean manual) {
 		this.link = link;
 		this.out = out;
+		this.manual = manual;
 	}
 
 	@Override
@@ -38,6 +40,7 @@ public class RandochooseUpdate implements Runnable {
 			
 			bout.close();
 			in.close();
+			RandochooseUpdateStageTwo.checkStage(RandochooseMain.majorVer, RandochooseMain.minorVer1, RandochooseMain.minorVer2, this.manual);
 		}
 		
 		catch (Exception e) {

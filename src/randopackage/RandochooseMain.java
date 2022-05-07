@@ -10,13 +10,12 @@ public class RandochooseMain {
 
 	public static int majorVer = 0;
 	public static int minorVer1 = 2;
-	public static int minorVer2 = 0;
+	public static int minorVer2 = 1;
 	
 	public static void main(String[] args) {
 		String link = "https://raw.githubusercontent.com/Tech-FZ/randochoose/main/vercheck.rdc";
 		File out = new File("vercheck.rdc");
-		new Thread(new RandochooseUpdate(link, out)).start();
-		RandochooseUpdateStageTwo.checkStage(majorVer, minorVer1, minorVer2, false);
+		new Thread(new RandochooseUpdate(link, out, false)).start();
 		
 		JFrame mainFrame = new JFrame();
 		mainFrame.setTitle("Randochoose");
@@ -67,8 +66,7 @@ public class RandochooseMain {
 			public void actionPerformed(ActionEvent arg0) {
 				String link = "https://raw.githubusercontent.com/Tech-FZ/randochoose/main/vercheck.rdc";
 				File out = new File("vercheck.rdc");
-				new Thread(new RandochooseUpdate(link, out)).start();
-				RandochooseUpdateStageTwo.checkStage(majorVer, minorVer1, minorVer2, true);
+				new Thread(new RandochooseUpdate(link, out, true)).start();
 			}
 		});
 		
