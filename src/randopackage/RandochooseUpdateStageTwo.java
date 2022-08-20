@@ -84,7 +84,7 @@ public class RandochooseUpdateStageTwo {
 		noticeLabel3.setFont(new Font("Arial", 0, 16));
 		noEntryPanel.add(noticeLabel3);
 		
-		JLabel questionLbl = new JLabel("Do you want to be redirected to the GitHub repository of");
+		JLabel questionLbl = new JLabel("Do you want to be redirected to the GitHub or Codeberg repository of");
 		questionLbl.setFont(new Font("Arial", 0, 16));
 		noEntryPanel.add(questionLbl);
 		
@@ -94,7 +94,7 @@ public class RandochooseUpdateStageTwo {
 		
 		JPanel btnPanel = new JPanel(new GridLayout(1, 2, 10, 10));
 		
-		JButton yesBtn = new JButton("Yes");
+		JButton yesBtn = new JButton("Yes, on GitHub");
 		yesBtn.setFont(new Font("Arial", 0, 14));
 		
 		yesBtn.addActionListener(new ActionListener() {
@@ -116,6 +116,29 @@ public class RandochooseUpdateStageTwo {
 		});
 		
 		btnPanel.add(yesBtn);
+		
+		JButton codebergBtn = new JButton("Yes, on Codeberg");
+		codebergBtn.setFont(new Font("Arial", 0, 14));
+		
+		codebergBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Desktop desk = Desktop.getDesktop();
+				
+				try {
+					desk.browse(new URI("https://codeberg.org/lucien-rowan/randochoose/releases"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (URISyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				noEntryDialog.setVisible(false);
+			}
+		});
+		
+		btnPanel.add(codebergBtn);
 		
 		JButton noBtn = new JButton("No");
 		noBtn.setFont(new Font("Arial", 0, 14));

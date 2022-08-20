@@ -1,3 +1,7 @@
+Randochoose 0.2.2 Alpha
+- Completion: 20th August, 2022
+- It took me long to get into the mood to update Randochoose again, but the only change is that you can now choose if you rather want to get Randochoose from GitHub or from Codeberg.
+
 Randochoose 0.2.1 Alpha
 - Completion: 7th May, 2022
 - The updater has been fixed.
