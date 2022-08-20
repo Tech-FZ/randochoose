@@ -1,6 +1,11 @@
 # Randochoose
 A random generator written in Java.
 
+## Mirrors
+
+GitHub: https://github.com/Tech-FZ/randochoose
+Codeberg: https://codeberg.org/lucien-rowan/randochoose
+
 ## We're Using GitHub Under Protest
 
 This project is currently hosted on GitHub.  This is not ideal; GitHub is a
