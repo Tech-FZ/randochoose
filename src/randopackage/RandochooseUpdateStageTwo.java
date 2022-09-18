@@ -9,8 +9,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class RandochooseUpdateStageTwo {
-	static String[] newestVer = new String[3];
-	static int[] newestVerInt = new int[3];
+	static String[] newestVer = new String[4];
+	static int[] newestVerInt = new int[4];
 	
 	public static void checkStage(int majorVer, int minorVer1, int minorVer2, int verCode, boolean manual) {
 		File file = new File("vercheck.rdc");
