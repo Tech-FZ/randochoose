@@ -54,7 +54,7 @@ public class RandochooseUpdateStageTwo {
 			i++;
 		}
 		
-		if (minorVer2 < newestVerInt[2] || minorVer1 < newestVerInt[1] || majorVer < newestVerInt[0] || verCode < newestVerInt[3]) {
+		if (verCode < newestVerInt[3]) {
 			int[] currentVer = {majorVer, minorVer1, minorVer2};
 			newVerAvailable(currentVer, newestVerInt);
 		}

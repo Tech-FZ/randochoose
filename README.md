@@ -50,14 +50,28 @@ HDD: 2 MB free disk space (really small, right?)
 
 ⁵ The official Oracle binaries are not free for anything but development and testing purposes. Using the Adoptium Temurin binaries is recommended. You can get them here: https://adoptium.net/de/
 
-# Installation
+## Versioning scheme
+
+Updated: 18th September, 2022 with 2022.9.0
+
+A versioning scheme can be difficult. To help, I decided to explain. Generally, it is listed as yyyy.m.r with yyyy being the year a version was released, m being the month a version was released and r being the release number within a month.
+
+### Examples
+
+| Version | Interprete as |
+| ------- | ------------- |
+| 2022.9.0 | The first release in September 2022 |
+| 2039.11.7 | The eigth release in November 2039 |
+| 2012.2.19 | The 20th release in February 2012 |
+
+## Installation
 Just download the JAR file and run the program after installing Java. Easy, right?
 
-# Building
+## Building
 Just download the source code and run Eclipse. I recommend beginning a new project and copy the source code into new files. Then you can run it. If it works, right click on src, then choose Export, expand Java, click on Runnable JAR file, follow the instructions and - done!
 
-# Contribution
+## Contribution
 You must open a new issue before making contributions. But then, feel free to apply your plans to the program.
 
-# Forking
+## Forking
 This program is licensed under MIT. That means you can fork it and make it your own with little restrictions. Isn't that cool?

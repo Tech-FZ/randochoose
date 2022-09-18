@@ -5,13 +5,14 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.util.concurrent.*;
+import java.util.*;
 
 public class RandochooseMain {
 
-	public static int majorVer = 0;
-	public static int minorVer1 = 2;
-	public static int minorVer2 = 4;
-	public static int verCode = 7;
+	public static int majorVer = 2022;
+	public static int minorVer1 = 9;
+	public static int minorVer2 = 0;
+	public static int verCode = 8;
 	
 	public static void main(String[] args) {
 		String link = "https://raw.githubusercontent.com/Tech-FZ/randochoose/main/vercheck.rdc";
@@ -22,14 +23,15 @@ public class RandochooseMain {
 		JFrame mainFrame = new JFrame();
 		mainFrame.setTitle("Randochoose");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setSize(500, 300);
+		mainFrame.setSize(800, 600);
+		mainFrame.setMinimumSize(mainFrame.getSize());
 		mainFrame.setLocationRelativeTo(null);
 		
-		JPanel mainPanel = new JPanel(new GridLayout(4, 2, 10, 10));
+		JPanel mainPanel = new JPanel(new GridLayout(3, 0, 10, 10));
 		
-		JLabel alphaLabel = new JLabel("This program is an alpha! Major issues expected.");
+		/*JLabel alphaLabel = new JLabel("This program is an alpha! Major issues expected.");
 		alphaLabel.setFont(new Font("Arial", 0, 14));
-		mainPanel.add(alphaLabel);
+		mainPanel.add(alphaLabel);*/
 		
 		JLabel noticeLabel = new JLabel("One line is one candidate!");
 		noticeLabel.setFont(new Font("Arial", 0, 20));
@@ -48,7 +50,7 @@ public class RandochooseMain {
 		
 		mainPanel.add(textPanel);
 		
-		JPanel btnPanel = new JPanel(new GridLayout(1, 3, 10, 10));
+		JPanel btnPanel = new JPanel(new GridLayout(1, 2, 10, 10));
 		
 		JButton chooseCandidateBtn = new JButton("Choose!");
 		chooseCandidateBtn.setFont(new Font("Arial", 0, 14));
@@ -134,10 +136,28 @@ public class RandochooseMain {
 		noEntryDialog.setVisible(true);
 	}
 	
-	public static void randomizedChoice(String[] candidates) {
-		int i = candidates.length;
+	public static void randomizedChoice(String[] candidates) {		
+		for (int h = 0; h < candidates.length; h++) {
+			// Creating a object for Random class
+			Random r = new Random();
+          
+        	// Start from the last element and swap one by one. We don't
+        	// need to run for the first element that's why i > 0
+        	for (int i = candidates.length - 1; i > 0; i--) {
+            	// Pick a random index from 0 to i
+            	int j = r.nextInt(i);
+              
+            	// Swap arr[i] with the element at random index
+            	String temp = candidates[i];
+            	candidates[i] = candidates[j];
+            	candidates[j] = temp;
+        	}
+		}
+ 
+        // Prints the random array
+        System.out.println(Arrays.toString(candidates));
 		
-		int randomizedInt = ThreadLocalRandom.current().nextInt(0, i);
+		int randomizedInt = ThreadLocalRandom.current().nextInt(0, candidates.length);
 		String chosenCandidate = candidates[randomizedInt];
 		
 		JDialog noEntryDialog = new JDialog();

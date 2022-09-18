@@ -1,3 +1,10 @@
+Randochoose 2022.9.0
+- Not yet complete
+- Randochoose 0.2.x and older just picked from the candidates you typed in. That wasn't the best solution - that's why I'm happy to announce that the randomizing algorithm is a bit more complex now. Starting with this version of Randochoose, the list will be shuffled as many times as the number of your candidates before they are chosen.
+- Also, the versioning scheme has been changed from x.y.z (0.2.x and older) to y.m.r (like 2022.9.0, 2022.9.1 etc.). y is the year, m the month and r tells you if it is the first/second/... release within a month.
+- README.md has been corrected and updated.
+- The updater only checks the version code from now on.
+
 Randochoose 0.2.4 Alpha
 - Completion: 18th September, 2022
 - This is an emergency update - I forgot to update the maximum number of indexes in the second stage of the updater. That causes 0.2.3 to not notify about updates.
