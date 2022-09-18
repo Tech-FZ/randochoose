@@ -42,7 +42,7 @@ public class RandochooseUpdate implements Runnable {
 			
 			bout.close();
 			in.close();
-			RandochooseUpdateStageTwo.checkStage(RandochooseMain.majorVer, RandochooseMain.minorVer1, RandochooseMain.minorVer2, this.manual);
+			RandochooseUpdateStageTwo.checkStage(RandochooseMain.majorVer, RandochooseMain.minorVer1, RandochooseMain.minorVer2, RandochooseMain.verCode, this.manual);
 		}
 		
 		catch (Exception e) {
@@ -61,7 +61,7 @@ public class RandochooseUpdate implements Runnable {
 				
 				bout.close();
 				in.close();
-				RandochooseUpdateStageTwo.checkStage(RandochooseMain.majorVer, RandochooseMain.minorVer1, RandochooseMain.minorVer2, this.manual);
+				RandochooseUpdateStageTwo.checkStage(RandochooseMain.majorVer, RandochooseMain.minorVer1, RandochooseMain.minorVer2, RandochooseMain.verCode, this.manual);
 			}
 			
 			catch (Exception ex) {

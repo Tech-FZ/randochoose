@@ -10,7 +10,8 @@ public class RandochooseMain {
 
 	public static int majorVer = 0;
 	public static int minorVer1 = 2;
-	public static int minorVer2 = 2;
+	public static int minorVer2 = 3;
+	public static int verCode = 6;
 	
 	public static void main(String[] args) {
 		String link = "https://raw.githubusercontent.com/Tech-FZ/randochoose/main/vercheck.rdc";

@@ -12,7 +12,7 @@ public class RandochooseUpdateStageTwo {
 	static String[] newestVer = new String[3];
 	static int[] newestVerInt = new int[3];
 	
-	public static void checkStage(int majorVer, int minorVer1, int minorVer2, boolean manual) {
+	public static void checkStage(int majorVer, int minorVer1, int minorVer2, int verCode, boolean manual) {
 		File file = new File("vercheck.rdc");
 		
 		if (!file.canRead() || !file.isFile()) {
@@ -54,7 +54,7 @@ public class RandochooseUpdateStageTwo {
 			i++;
 		}
 		
-		if (minorVer2 < newestVerInt[2] || minorVer1 < newestVerInt[1] || majorVer < newestVerInt[0]) {
+		if (minorVer2 < newestVerInt[2] || minorVer1 < newestVerInt[1] || majorVer < newestVerInt[0] || verCode < newestVerInt[3]) {
 			int[] currentVer = {majorVer, minorVer1, minorVer2};
 			newVerAvailable(currentVer, newestVerInt);
 		}
