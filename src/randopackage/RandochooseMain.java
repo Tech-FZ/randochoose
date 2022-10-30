@@ -6,15 +6,18 @@ import java.awt.event.*;
 import java.io.File;
 import java.util.concurrent.*;
 import java.util.*;
+import java.util.List;
 
 public class RandochooseMain {
 
 	public static int majorVer = 2022;
-	public static int minorVer1 = 9;
+	public static int minorVer1 = 10;
 	public static int minorVer2 = 0;
-	public static int verCode = 8;
+	public static int verCode = 9;
+	static boolean groupModeSelected = false;
+	static int maxCandidatesInGroup = 2;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
 		String link = "https://raw.githubusercontent.com/Tech-FZ/randochoose/main/vercheck.rdc";
 		String link2 = "https://codeberg.org/lucien-rowan/randochoose/raw/branch/main/vercheck.rdc";
 		File out = new File("vercheck.rdc");
@@ -27,7 +30,7 @@ public class RandochooseMain {
 		mainFrame.setMinimumSize(mainFrame.getSize());
 		mainFrame.setLocationRelativeTo(null);
 		
-		JPanel mainPanel = new JPanel(new GridLayout(3, 0, 10, 10));
+		JPanel mainPanel = new JPanel(new GridLayout(0, 1, 10, 10));
 		
 		/*JLabel alphaLabel = new JLabel("This program is an alpha! Major issues expected.");
 		alphaLabel.setFont(new Font("Arial", 0, 14));
@@ -36,6 +39,72 @@ public class RandochooseMain {
 		JLabel noticeLabel = new JLabel("One line is one candidate!");
 		noticeLabel.setFont(new Font("Arial", 0, 20));
 		mainPanel.add(noticeLabel);
+		
+		JRadioButton normalMode = new JRadioButton();
+		JRadioButton groupMode = new JRadioButton();
+		ButtonGroup randomizerGroup = new ButtonGroup();
+		
+		JSpinner groupModeSpinner = new JSpinner();
+		groupModeSpinner.setEnabled(false);
+		
+		normalMode.setText("Normal randomization");
+		groupMode.setText("Randomize candidates into groups");
+		
+		normalMode.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getSource() == normalMode) {
+					if (e.getStateChange() == 1) {
+						groupModeSpinner.setEnabled(false);
+						groupModeSelected = false;
+					}
+				}
+				else if (e.getSource() == groupMode) {
+					if (e.getStateChange() == 1) {
+						groupModeSpinner.setEnabled(true);
+						groupModeSelected = true;
+					}
+				}
+			}
+		});
+		
+		groupMode.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getSource() == normalMode) {
+					if (e.getStateChange() == 1) {
+						groupModeSpinner.setEnabled(false);
+						groupModeSelected = false;
+					}
+				}
+				else if (e.getSource() == groupMode) {
+					if (e.getStateChange() == 1) {
+						groupModeSpinner.setEnabled(true);
+						groupModeSelected = true;
+					}
+				}
+			}
+		});
+		
+		mainPanel.add(normalMode);
+		mainPanel.add(groupMode);
+		
+		randomizerGroup.add(normalMode);
+		randomizerGroup.add(groupMode);
+		
+		normalMode.setSelected(true);
+		
+		JPanel groupModeSettingsPanel = new JPanel(new GridLayout(1, 2, 10, 10));
+		
+		JLabel groupModeLbl = new JLabel("Group mode only: How many in one group?");
+		groupModeLbl.setFont(new Font("Arial", 0, 12));
+		groupModeSettingsPanel.add(groupModeLbl);
+		
+		groupModeSettingsPanel.add(groupModeSpinner);
+		
+		mainPanel.add(groupModeSettingsPanel);
 		
 		JPanel textPanel = new JPanel(new GridLayout(1, 2, 10, 10));
 		
@@ -57,6 +126,7 @@ public class RandochooseMain {
 		
 		chooseCandidateBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				maxCandidatesInGroup = (int) groupModeSpinner.getValue();
 				scanTxtField(randomizerText.getText());
 			}
 		});
@@ -102,6 +172,7 @@ public class RandochooseMain {
 		}
 		
 		catch (Exception e) {
+			e.printStackTrace();
 			noEntries();
 		}
 	}
@@ -157,32 +228,176 @@ public class RandochooseMain {
         // Prints the random array
         System.out.println(Arrays.toString(candidates));
 		
-		int randomizedInt = ThreadLocalRandom.current().nextInt(0, candidates.length);
-		String chosenCandidate = candidates[randomizedInt];
-		
-		JDialog noEntryDialog = new JDialog();
-		noEntryDialog.setTitle("Randochoose");
-		
-		JPanel noEntryPanel = new JPanel(new GridLayout(2, 1, 10, 10));
-		
-		JLabel noticeLabel = new JLabel(chosenCandidate + " has been chosen.");
-		noticeLabel.setFont(new Font("Arial", 0, 16));
-		noEntryPanel.add(noticeLabel);
-		
-		JButton okBtn = new JButton("OK!");
-		okBtn.setFont(new Font("Arial", 0, 14));
-		
-		okBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				noEntryDialog.setVisible(false);
+        if (groupModeSelected == false) {
+        	int randomizedInt = ThreadLocalRandom.current().nextInt(0, candidates.length);
+    		String chosenCandidate = candidates[randomizedInt];
+    		
+    		JDialog noEntryDialog = new JDialog();
+    		noEntryDialog.setTitle("Randochoose");
+    		
+    		JPanel noEntryPanel = new JPanel(new GridLayout(2, 1, 10, 10));
+    		
+    		JLabel noticeLabel = new JLabel(chosenCandidate + " has been chosen.");
+    		noticeLabel.setFont(new Font("Arial", 0, 16));
+    		noEntryPanel.add(noticeLabel);
+    		
+    		JButton okBtn = new JButton("OK!");
+    		okBtn.setFont(new Font("Arial", 0, 14));
+    		
+    		okBtn.addActionListener(new ActionListener() {
+    			public void actionPerformed(ActionEvent arg0) {
+    				noEntryDialog.setVisible(false);
+    			}
+    		});
+    		
+    		noEntryPanel.add(okBtn);
+    		
+    		noEntryDialog.add(noEntryPanel);
+    		noEntryDialog.pack();
+    		noEntryDialog.setVisible(true);
+        }
+        
+        else {
+        	JDialog noEntryDialog = new JDialog();
+    		noEntryDialog.setTitle("Randochoose");
+    		
+    		JPanel noEntryPanel = new JPanel(new GridLayout(0, 1, 10, 10));
+    		
+    		JLabel noticeLabel = new JLabel("These are the groups.");
+    		noticeLabel.setFont(new Font("Arial", 0, 16));
+    		noEntryPanel.add(noticeLabel);
+    		
+    		JPanel tablePanel = new JPanel(new GridLayout(0, 2, 10, 10));
+    		
+    		Object[] columns = new Object[maxCandidatesInGroup];
+    		Object[][] groups = new Object[(int) Math.ceil(candidates.length / maxCandidatesInGroup) + 1][maxCandidatesInGroup];
+    		System.out.println((int) Math.ceil(candidates.length / maxCandidatesInGroup));
+    		
+    		for (int i = 1; i <= maxCandidatesInGroup; i++) {
+    			columns[i - 1] = String.valueOf(groupModeSelected);
+    		}
+    		
+    		int k = 0;
+    		
+    		for (int i = 0; i < candidates.length; i+=maxCandidatesInGroup) {
+    			Object[] tempObj = new Object[maxCandidatesInGroup];
+    			for (int j = 0; j < maxCandidatesInGroup; j++) {
+    				try {
+    				tempObj[j] = candidates[i+j];
+    				}
+    				catch (Exception e) {
+    					try {
+    						tempObj[j] = candidates[i+j];
+    					}
+    					catch (Exception e1) {
+    						try {
+    							tempObj[j] = candidates[i+j];
+    						}
+    						catch (Exception e2) {
+    							if (candidates.length % maxCandidatesInGroup != 0) {
+    								tempObj[j] = "";
+    							}
+    						}
+    					}
+    				}
+    			}
+    			groups[k] = tempObj;
+    			k++;
+    		}
+    		
+    		int alreadyAssigned = 0;
+    		Object[] alreadyAssignedCandidates = new Object[candidates.length];
+    		
+    		for (Object[] group : groups) {
+				for (Object object : group) {
+					System.out.println(object);
+					
+					/*if (object == null) {
+						for (int i = 0; i < groups.length; i++) {
+							if (groups[i] == group) {
+								for (int j = 0; j < group.length; j++) {
+									if (groups[i][j] == object) {
+										for (int k1 = 0; k1 < candidates.length; k1++) {
+											for (int l = 0; l < alreadyAssignedCandidates.length; l++) {
+												if (candidates[k1] != alreadyAssignedCandidates[l]) {
+													groups[i][j] = candidates[k1];
+													break;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					if (object != null) {
+						alreadyAssignedCandidates[alreadyAssigned] = object;
+						alreadyAssigned++;
+					}*/
+				}
 			}
-		});
+    		
+    		List<String> candidateAsList = new ArrayList<>(Arrays.asList(candidates));
+    		int posInCandidateObj = 0;
+    		int posInCandidateObj2 = 0;
+    		
+    		for (int i = 0; i < groups.length; i++) {
+    			for (int j = 0; j < groups[i].length; j++) {
+    				if (groups[i][j] == null) {
+    					for (int l = 0; l < candidates.length; l++) {
+    						for (Object[] group : groups) {
+    							for (Object object : group) {
+    								if (object != candidates[l] && candidateAsList.contains(object) == false) {
+    									boolean candidateAlreadyPresent = false;
+    									for (int m = 0; m < groups.length; m++) {
+    										for (int n = 0; n < groups[m].length; n++) {
+    											if (groups[m][n] == candidates[l]) {
+    												candidateAlreadyPresent = true;
+    											}
+    											posInCandidateObj = n;
+    										}
+    										posInCandidateObj2 = m;
+    										
+    										if (candidateAlreadyPresent == false) {
+    											groups[i][j] = candidates[l];
+    										}
+    									}
+    								}
+    							}
+    						}
+    					}
+    				}
+    			}
+    		}
+    		
+    		
+    		JTable table = new JTable(groups, columns);
+    		
+    		JScrollPane scrollPane = new JScrollPane(table);
+    		table.setFillsViewportHeight(true);
+    		
+    		tablePanel.add(table);
+    		tablePanel.add(scrollPane);
+    		
+    		noEntryPanel.add(tablePanel);
+    		
+    		JButton okBtn = new JButton("OK!");
+    		okBtn.setFont(new Font("Arial", 0, 14));
+    		
+    		okBtn.addActionListener(new ActionListener() {
+    			public void actionPerformed(ActionEvent arg0) {
+    				noEntryDialog.setVisible(false);
+    			}
+    		});
+    		
+    		noEntryPanel.add(okBtn);
+    		
+    		noEntryDialog.add(noEntryPanel);
+    		noEntryDialog.pack();
+    		noEntryDialog.setVisible(true);
+        }
 		
-		noEntryPanel.add(okBtn);
-		
-		noEntryDialog.add(noEntryPanel);
-		noEntryDialog.pack();
-		noEntryDialog.setVisible(true);
 	}
 	
 	public static void aboutThisSoftware() {
