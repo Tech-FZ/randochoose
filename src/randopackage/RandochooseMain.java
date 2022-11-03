@@ -11,9 +11,9 @@ import java.util.List;
 public class RandochooseMain {
 
 	public static int majorVer = 2022;
-	public static int minorVer1 = 10;
+	public static int minorVer1 = 11;
 	public static int minorVer2 = 0;
-	public static int verCode = 9;
+	public static int verCode = 10;
 	static boolean groupModeSelected = false;
 	static int maxCandidatesInGroup = 2;
 	
@@ -22,6 +22,8 @@ public class RandochooseMain {
 		String link2 = "https://codeberg.org/lucien-rowan/randochoose/raw/branch/main/vercheck.rdc";
 		File out = new File("vercheck.rdc");
 		new Thread(new RandochooseUpdate(link, link2, out, false)).start();
+		
+		RandochooseSettings.createSettingsFile();
 		
 		JFrame mainFrame = new JFrame();
 		mainFrame.setTitle("Randochoose");
@@ -36,7 +38,9 @@ public class RandochooseMain {
 		alphaLabel.setFont(new Font("Arial", 0, 14));
 		mainPanel.add(alphaLabel);*/
 		
-		JLabel noticeLabel = new JLabel("One line is one candidate!");
+		ResourceBundle langRb = ResourceBundle.getBundle("rdc_languages/resource_bundle_en");
+		
+		JLabel noticeLabel = new JLabel(langRb.getString("candidateInstruction"));
 		noticeLabel.setFont(new Font("Arial", 0, 20));
 		mainPanel.add(noticeLabel);
 		
@@ -47,8 +51,8 @@ public class RandochooseMain {
 		JSpinner groupModeSpinner = new JSpinner();
 		groupModeSpinner.setEnabled(false);
 		
-		normalMode.setText("Normal randomization");
-		groupMode.setText("Randomize candidates into groups");
+		normalMode.setText(langRb.getString("normalRandomizationTxt"));
+		groupMode.setText(langRb.getString("groupRandomizationTxt"));
 		
 		normalMode.addItemListener(new ItemListener() {
 			
@@ -98,7 +102,7 @@ public class RandochooseMain {
 		
 		JPanel groupModeSettingsPanel = new JPanel(new GridLayout(1, 2, 10, 10));
 		
-		JLabel groupModeLbl = new JLabel("Group mode only: How many in one group?");
+		JLabel groupModeLbl = new JLabel(langRb.getString("groupRandomizationCountTxt"));
 		groupModeLbl.setFont(new Font("Arial", 0, 12));
 		groupModeSettingsPanel.add(groupModeLbl);
 		
@@ -121,7 +125,7 @@ public class RandochooseMain {
 		
 		JPanel btnPanel = new JPanel(new GridLayout(1, 2, 10, 10));
 		
-		JButton chooseCandidateBtn = new JButton("Choose!");
+		JButton chooseCandidateBtn = new JButton(langRb.getString("chooseBtnTxt"));
 		chooseCandidateBtn.setFont(new Font("Arial", 0, 14));
 		
 		chooseCandidateBtn.addActionListener(new ActionListener() {
@@ -133,7 +137,7 @@ public class RandochooseMain {
 		
 		btnPanel.add(chooseCandidateBtn);
 		
-		JButton updateBtn = new JButton("Check for updates");
+		JButton updateBtn = new JButton(langRb.getString("checkUpdBtnTxt"));
 		updateBtn.setFont(new Font("Arial", 0, 14));
 		
 		updateBtn.addActionListener(new ActionListener() {
@@ -147,7 +151,7 @@ public class RandochooseMain {
 		
 		btnPanel.add(updateBtn);
 		
-		JButton aboutBtn = new JButton("About");
+		JButton aboutBtn = new JButton(langRb.getString("aboutBtnTxt"));
 		aboutBtn.setFont(new Font("Arial", 0, 14));
 		
 		aboutBtn.addActionListener(new ActionListener() {

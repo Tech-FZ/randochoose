@@ -1,3 +1,7 @@
+Randochoose 2022.11.0
+- Must still be completed
+- I did do some stuff to prepare other languages.
+
 Randochoose 2022.10.0
 - Completion: 30th October, 2022
 - You can now choose between normal and group randomization.
