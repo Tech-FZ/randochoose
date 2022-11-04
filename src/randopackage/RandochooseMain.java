@@ -23,7 +23,7 @@ public class RandochooseMain {
 		File out = new File("vercheck.rdc");
 		new Thread(new RandochooseUpdate(link, link2, out, false)).start();
 		
-		RandochooseSettings.createSettingsFile();
+		String[] settings = RandochooseSettings.createSettingsFile();
 		
 		JFrame mainFrame = new JFrame();
 		mainFrame.setTitle("Randochoose");
@@ -38,7 +38,18 @@ public class RandochooseMain {
 		alphaLabel.setFont(new Font("Arial", 0, 14));
 		mainPanel.add(alphaLabel);*/
 		
-		ResourceBundle langRb = ResourceBundle.getBundle("rdc_languages/resource_bundle_en");
+		ResourceBundle langRb =  ResourceBundle.getBundle("rdc_languages/resource_bundle_en");
+		
+		if (settings[0].contains("en")) {
+			System.out.println(settings[0]);
+			langRb = ResourceBundle.getBundle("rdc_languages/resource_bundle_en");
+		}
+		
+		else if (settings[0].contains("de")) {
+			System.out.println(settings[0]);
+			langRb = ResourceBundle.getBundle("rdc_languages/resource_bundle_de");
+		}
+		
 		
 		JLabel noticeLabel = new JLabel(langRb.getString("candidateInstruction"));
 		noticeLabel.setFont(new Font("Arial", 0, 20));
@@ -185,17 +196,31 @@ public class RandochooseMain {
 		JDialog noEntryDialog = new JDialog();
 		noEntryDialog.setTitle("Randochoose");
 		
+		String[] settings = RandochooseSettings.readSettingsFile();
+		
+		ResourceBundle langRb = ResourceBundle.getBundle("rdc_languages/resource_bundle_en");
+		
+		if (settings[0].contains("en")) {
+			System.out.println(settings[0]);
+			langRb = ResourceBundle.getBundle("rdc_languages/resource_bundle_en");
+		}
+		
+		else if (settings[0].contains("de")) {
+			System.out.println(settings[0]);
+			langRb = ResourceBundle.getBundle("rdc_languages/resource_bundle_de");
+		}
+		
 		JPanel noEntryPanel = new JPanel(new GridLayout(3, 1, 10, 10));
 		
-		JLabel noticeLabel = new JLabel("Sorry, but you didn't type in anything!");
+		JLabel noticeLabel = new JLabel(langRb.getString("sryTxtP1"));
 		noticeLabel.setFont(new Font("Arial", 0, 16));
 		noEntryPanel.add(noticeLabel);
 		
-		JLabel noticeLabel2 = new JLabel("Please type in at least one candidate to continue.");
+		JLabel noticeLabel2 = new JLabel(langRb.getString("sryTxtP2"));
 		noticeLabel2.setFont(new Font("Arial", 0, 16));
 		noEntryPanel.add(noticeLabel2);
 		
-		JButton okBtn = new JButton("OK!");
+		JButton okBtn = new JButton(langRb.getString("okBtnTxt"));
 		okBtn.setFont(new Font("Arial", 0, 14));
 		
 		okBtn.addActionListener(new ActionListener() {
@@ -231,6 +256,20 @@ public class RandochooseMain {
  
         // Prints the random array
         System.out.println(Arrays.toString(candidates));
+        
+        String[] settings = RandochooseSettings.readSettingsFile();
+        
+        ResourceBundle langRb = ResourceBundle.getBundle("rdc_languages/resource_bundle_en");
+        
+        if (settings[0].contains("en")) {
+			System.out.println(settings[0]);
+			langRb = ResourceBundle.getBundle("rdc_languages/resource_bundle_en");
+		}
+		
+		else if (settings[0].contains("de")) {
+			System.out.println(settings[0]);
+			langRb = ResourceBundle.getBundle("rdc_languages/resource_bundle_de");
+		}
 		
         if (groupModeSelected == false) {
         	int randomizedInt = ThreadLocalRandom.current().nextInt(0, candidates.length);
@@ -241,11 +280,11 @@ public class RandochooseMain {
     		
     		JPanel noEntryPanel = new JPanel(new GridLayout(2, 1, 10, 10));
     		
-    		JLabel noticeLabel = new JLabel(chosenCandidate + " has been chosen.");
+    		JLabel noticeLabel = new JLabel(chosenCandidate + " " + langRb.getString("chosenCandidateTxt"));
     		noticeLabel.setFont(new Font("Arial", 0, 16));
     		noEntryPanel.add(noticeLabel);
     		
-    		JButton okBtn = new JButton("OK!");
+    		JButton okBtn = new JButton(langRb.getString("okBtnTxt"));
     		okBtn.setFont(new Font("Arial", 0, 14));
     		
     		okBtn.addActionListener(new ActionListener() {
@@ -267,7 +306,7 @@ public class RandochooseMain {
     		
     		JPanel noEntryPanel = new JPanel(new GridLayout(0, 1, 10, 10));
     		
-    		JLabel noticeLabel = new JLabel("These are the groups.");
+    		JLabel noticeLabel = new JLabel(langRb.getString("groupsChosenTxt"));
     		noticeLabel.setFont(new Font("Arial", 0, 16));
     		noEntryPanel.add(noticeLabel);
     		
@@ -386,7 +425,7 @@ public class RandochooseMain {
     		
     		noEntryPanel.add(tablePanel);
     		
-    		JButton okBtn = new JButton("OK!");
+    		JButton okBtn = new JButton(langRb.getString("okBtnTxt"));
     		okBtn.setFont(new Font("Arial", 0, 14));
     		
     		okBtn.addActionListener(new ActionListener() {
@@ -409,6 +448,20 @@ public class RandochooseMain {
 		noEntryDialog.setTitle("Randochoose");
 		
 		JPanel noEntryPanel = new JPanel(new GridLayout(0, 1, 10, 10));
+		
+		String[] settings = RandochooseSettings.readSettingsFile();
+		
+		ResourceBundle langRb = ResourceBundle.getBundle("rdc_languages/resource_bundle_en");
+		
+		if (settings[0].contains("en")) {
+			System.out.println(settings[0]);
+			langRb = ResourceBundle.getBundle("rdc_languages/resource_bundle_en");
+		}
+		
+		else if (settings[0].contains("de")) {
+			System.out.println(settings[0]);
+			langRb = ResourceBundle.getBundle("rdc_languages/resource_bundle_de");
+		}
 		
 		JLabel noticeLabel = new JLabel("Randochoose");
 		noticeLabel.setFont(new Font("Arial", 0, 16));
@@ -494,7 +547,7 @@ public class RandochooseMain {
 		conditions17.setFont(new Font("Arial", 0, 12));
 		noEntryPanel.add(conditions17);
 		
-		JButton okBtn = new JButton("OK!");
+		JButton okBtn = new JButton(langRb.getString("okBtnTxt"));
 		okBtn.setFont(new Font("Arial", 0, 14));
 		
 		okBtn.addActionListener(new ActionListener() {
